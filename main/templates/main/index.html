@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+    <ul>
+        <li>
+            <button class="btn btn-primary" style="margin:5px">
+                <a href={% url 'main:tasks' %} class="text-light" style="text-decoration:none">View your tasks</a>
+            </button>
+        </li>
+        <li>
+            <button class="btn btn-primary" style="margin:5px">
+                <a href="{% url 'main:add_task' %}" class="text-light" style="text-decoration:none">Add a new task</a>
+            </button>
+        </li>
+    </ul>
+    {% else %}
+    
+    <h1 style="margin:auto;text-align:center;">
+        <a href="{% url 'login' %}" style="text-decoration:none">Please log in.</a>
+    </h1>
+    {% endif %}
+{% endblock content %}

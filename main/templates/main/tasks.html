@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    {% if not task_list %}
+        <h1>You have no tasks. <a href={% url 'main:add_task' %}>Add task.</a></h1>
+    {% endif %}
+    {% for task in task_list %}
+        <div class='container border border-primary my-2 rounded' style="padding: 8px;">
+            {% if task.deadline %}
+            <h6 style="float: right;" class='mt-1'>
+                {{task.deadline}}
+            </h6>
+            {% else %}
+            <h6 style="float: right;" class='mt-1'>
+                <button class="btn btn-primary btn-sm">
+                    <a href="/main/update_task/{{task.id}}" class="text-light" style="text-decoration:none">Add a deadline</a>
+                </button>
+            </h6>
+            {% endif %}
+
+            <h3>
+                <a style='text-decoration: none' href="/main/task/{{task.id}}">{{task.name}}</a>    
+            </h3>
+           
+            <ul>
+                <li>
+                    <h4>
+                        {{task.description}}
+                    </h4>
+                </li>
+            </ul>
+            <button class='btn btn-sm btn-danger'>
+                <a href="/main/delete_task/{{task.id}}" class='text-light' style='text-decoration: none'>Delete task</a>
+            </button>
+            
+            
+            
+        </div>
+    {% endfor %}
+    {% if task_list %}
+    <button class="btn btn-primary" >
+        <a href="{% url 'main:add_task' %}?next={{request.path}}" class="text-light" style="text-decoration: none">Add a new task.</a>
+    </button>
+ 
+   
+    {% endif %}
+{% endblock content %}

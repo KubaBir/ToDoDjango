@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <a href={% url 'main:tasks' %}>Return to your tasks</a>
+    <div class='container border border-primary rounded'>
+        <h1>{{task.name}}</h1>
+        {% if task.deadline %}
+            <h4>{{task.deadline}}</h4>
+        {% else %}
+            <h4>No deadline set.</h4>
+        {% endif %}
+        <div>Description:</div>
+        <p>
+            {{task.description}}
+        </p>
+        <h5>
+            <a style='text-decoration: none' href="/main/update_task/{{task.id}}">Edit task</a>
+        </h5>
+
+    </div>
+{% endblock content %}
