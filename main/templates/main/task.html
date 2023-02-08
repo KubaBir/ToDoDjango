@@ -10,9 +10,13 @@
             <h4>No deadline set.</h4>
         {% endif %}
         <div>Description:</div>
+        {% if task.description %}
         <p>
             {{task.description}}
         </p>
+        {%else%}
+        <p></p>
+        {% endif %}
         <h5>
             <a style='text-decoration: none' href="/main/update_task/{{task.id}}">Edit task</a>
         </h5>

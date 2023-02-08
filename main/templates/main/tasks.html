@@ -21,14 +21,15 @@
             <h3>
                 <a style='text-decoration: none' href="/main/task/{{task.id}}">{{task.name}}</a>    
             </h3>
-           
-            <ul>
-                <li>
-                    <h4>
-                        {{task.description}}
-                    </h4>
-                </li>
-            </ul>
+            {% if task.description != none %}
+                <ul>
+                    <li>
+                        <h4>
+                            {{task.description}}
+                        </h4>
+                    </li>
+                </ul>
+            {% endif %}
             <button class='btn btn-sm btn-danger'>
                 <a href="/main/delete_task/{{task.id}}" class='text-light' style='text-decoration: none'>Delete task</a>
             </button>

@@ -1,11 +1,15 @@
 from winreg import DeleteValue
+
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, DeleteView, DetailView, UpdateView
-from django.contrib.auth.forms import UserCreationForm
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  UpdateView)
+
+from .forms import RegisterUserForm
 from .models import Task
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django import forms
 
 # Create your views here.
 
@@ -15,7 +19,7 @@ def index(request):
 
 
 class RegisterView(CreateView):
-    form_class = UserCreationForm
+    form_class = RegisterUserForm
     success_url = reverse_lazy('login')
     template_name: str = 'main/register.html'
 
